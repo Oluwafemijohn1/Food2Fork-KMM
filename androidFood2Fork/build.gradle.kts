@@ -4,6 +4,7 @@ plugins {
     kotlin(KotlinPlugins.kapt)
     id(Plugins.hilt)
     kotlin(KotlinPlugins.serialization) version Kotlin.version
+//    id("org.jetbrains.kotlin.android")
 }
 
 android {
@@ -29,7 +30,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
-        useIR = true
+//        useIR = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Compose.composeVersion
@@ -59,6 +60,7 @@ dependencies {
 
     implementation(Hilt.hiltAndroid)
     implementation(Hilt.hiltNavigation)
+    implementation("androidx.core:core-ktx:+")
     kapt(Hilt.hiltCompiler)
 
     implementation(Kotlinx.datetime)

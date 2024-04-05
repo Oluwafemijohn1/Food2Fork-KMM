@@ -6,6 +6,7 @@ plugins {
     kotlin(KotlinPlugins.serialization) version Kotlin.version
     id(Plugins.androidLibrary)
     id(Plugins.sqlDelight)
+//    id("org.jetbrains.kotlin.android")
 }
 
 version = "1.0"
@@ -30,6 +31,9 @@ android {
         create("testReleaseApi")
     }
 }
+dependencies {
+    implementation("androidx.core:core-ktx:+")
+}
 
 kotlin {
     android()
@@ -46,7 +50,10 @@ kotlin {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
         ios.deploymentTarget = "14.1"
-        frameworkName = "shared"
+//        frameworkName = "shared"
+        framework {
+            baseName = "shared"
+        }
         podfile = project.file("../iosFood2Fork/Podfile")
     }
     
@@ -55,6 +62,10 @@ kotlin {
             dependencies{
                 implementation(Ktor.core)
                 implementation(Ktor.clientSerialization)
+//                implementation("io.ktor:ktor-client-serialization:2.2.2")
+                implementation(Ktor.content_negotiation)
+                implementation(Ktor.ktor_json_serialization)
+
                 implementation(Kotlinx.datetime)
                 implementation(SQLDelight.runtime)
             }
